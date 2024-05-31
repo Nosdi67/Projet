@@ -5,7 +5,9 @@
 {% block body %}
 <h1>Liste des Entreprises</h1>
 {% for entreprise in entreprises %}
-    <a href="{{ path('showEntreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a><br>
+<a href="{{ path('showEntreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a>
+<a href="{{ path('editEntreprise', {'id': entreprise.id}) }}">Edit</a>
+<br>
 {% endfor %}
 {% endblock %}
 

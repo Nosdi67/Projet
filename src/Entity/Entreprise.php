@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
@@ -37,6 +38,7 @@ class Entreprise
      * @var Collection<int, Employe>
      */
     #[ORM\OneToMany(targetEntity: Employe::class, mappedBy: 'entreprise')]
+    #[OrderBy(['nom'=>'ASC'])]
     private Collection $employes;
 
     public function __construct()
@@ -54,7 +56,7 @@ class Entreprise
         return $this->raisonSociale;
     }
 
-    public function setRaisonSocial(string $raisonSociale): static
+    public function setRaisonSociale(string $raisonSociale): static
     {
         $this->raisonSociale = $raisonSociale;
 

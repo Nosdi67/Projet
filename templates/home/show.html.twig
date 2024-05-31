@@ -17,10 +17,19 @@
    <p> adress : {{ entreprise.adresse }}</p>
    <p> nom : {{ entreprise.raisonSociale }}</p>
     <p>date de creation : {{ entreprise.DateCreation | date("m/d/Y") }}</p>
-    {# <p>
-        {% for employe in employes %}
-        {{ employe }}
+    
+    
+
+    <h3>Liste des employés</h3>
+    {% if entreprise.employes | length > 0 %}
+    {% for employe in entreprise.employes %}
+    <p>
+        <a href="{{ path('showEmploye',{'id':employe.id}) }}">{{ employe }}</a><br>
         {% endfor %}
-    </p> #}
+    </p>
+
+    {% else %}
+    <p>aucun emplyé</p>
+    {% endif %}
     
 {% endblock %}

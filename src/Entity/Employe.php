@@ -52,14 +52,14 @@ class Employe
         return $this;
     }
 
-    public function getPreno(): ?string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 
-    public function setPreno(string $preno): static
+    public function setPrenom(string $prenom): static
     {
-        $this->prenom = $preno;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -100,10 +100,6 @@ class Employe
         return $this;
     }
 
-    public function __toString(){
-        return $this->prenom.' '.$this->nom. " travaile chez ".$this->entreprise->getRaisonSociale();
-    }
-
     public function getVille(): ?string
     {
         return $this->ville;
@@ -115,4 +111,18 @@ class Employe
 
         return $this;
     }
+
+    public function getAge(){
+        if($this->dateNaissance){
+            $age = date_diff($this->dateNaissance, new \DateTime())->format('%y');
+            return $age;
+        }else{
+            return "Pas de date de naissance définie";
+        }
+    }
+
+    public function __toString(){
+        return $this->prenom.' '.$this->nom. " travaile chez ".$this->entreprise->getRaisonSociale();
+    }
+
 }

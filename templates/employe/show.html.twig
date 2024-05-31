@@ -9,12 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ name }}! ✅</h1>
 
 
-    <h2>La liste des employes</h2>
-    {% for employe in employes %}
+    <h2>detail d'un salarié</h2>
 
-    <a href="{{ path('showEmploye', {'id': employe.id}) }}">{{ employe }}</a><br>
-    {% endfor %}    
+   
+   <p> nom : {{ employe.nom }}</p>
+   <p> prenom : {{  employe.prenom }}</p>
+    <p>date de naissance : {{  employe.dateNaissance | date("m/d/Y") }}</p>
+    <p> Age : {{ employe.age }} ans </p>
+
+
+    
+    
 {% endblock %}

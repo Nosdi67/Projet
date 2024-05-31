@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EmployeController!{% endblock %}
+{% block title %}Ajouter une entreprise{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Ajouter une entreprise</h1>
 
-
-    <h2>La liste des employes</h2>
-    {% for employe in employes %}
-
-    <a href="{{ path('showEmploye', {'id': employe.id}) }}">{{ employe }}</a><br>
-    {% endfor %}    
+    {{form (formAddEntreprise)}}
+    
 {% endblock %}

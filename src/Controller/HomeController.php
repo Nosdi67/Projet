@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use App\Form\EntrepriseType;
 use App\Repository\EntrepriseRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +21,25 @@ class HomeController extends AbstractController
          'entreprises'=>$entreprise        
         ]);
     }
-
-    #[Route('/home/{id}', name: 'showEntreprise')]
-    public function show(Entreprise $entreprise): Response
+    #[Route('/home/new', name: 'NewEntreprise')]
+    public function new(Request $request): Response
     {
-        return $this->render('home/show.html.twig', [
+        $entreprise = new Entreprise();
+        $form = $this->createForm(EntrepriseType::class, $entreprise);
+        $form->handleRequest($request);
+        
+        return $this->render('home/new.html.twig', [
             'entreprise'=>$entreprise,
-            'name'=>'Robert',
+            'formAddEntreprise'=>$form
         ]);
     }
+    
+        #[Route('/home/{id}', name: 'showEntreprise')]
+        public function show(Entreprise $entreprise): Response
+        {
+            return $this->render('home/show.html.twig', [
+                'entreprise'=>$entreprise,
+                'name'=>'Robert',
+            ]);
+        }
 }

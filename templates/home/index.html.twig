@@ -3,6 +3,12 @@
 {% block title %}Liste des Entreprises{% endblock %}
 
 {% block body %}
+{% if app.user %}
+<br>Bonjour {{app.user.pseudo}}!
+    
+{% else %}
+    <p>vous n'etes pas connecté</p>
+{% endif %}
 <h1>Liste des Entreprises</h1>
 {% for entreprise in entreprises %}
 <a href="{{ path('showEntreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a>

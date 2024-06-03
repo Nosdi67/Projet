@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
+use App\Repository\UserRepository;
 use App\Repository\EntrepriseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +21,7 @@ class HomeController extends AbstractController
         // $entreprise = $entrepriseRepository->getRepository(Entreprise::class)->findAll();
         $entreprise = $entrepriseRepository->findBy([],['raisonSociale'=>'ASC']);
         return $this->render('home/index.html.twig', [
-         'entreprises'=>$entreprise        
+         'entreprises'=>$entreprise   
         ]);
     }
 

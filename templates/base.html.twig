@@ -13,12 +13,26 @@
         {% endblock %}
     </head>
     <body>
+ 
         <ul>
             <li><a href="{{ path('app_home')}}">liste entreprise</a></li>
             <li><a href="{{ path('app_employe')}}">liste employes</a></li>
             <li><a href=" {{ path('NewEntreprise')}}">Ajouter une Entreprise</a></li>
             <li><a href="{{ path('NewEmploye')}}">Ajouter un salarié</a></li>
+            {% if app.user %}
+            <li><a href="">Mon Profil</a></li>   
+            <li><a href="{{ path('app_logout')}}">Se déco</a></li>
+            {% else %}
+            <li><a href="{{ path('app_login')}}">Se connecter</a></li>
+            <li><a href="{{ path('app_register')}}">Creer un compte</a></li>
+            {% endif %}
         </ul>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="">Panneau admin</a>
+        {% else %}
+            
+        {% endif %}
         
         {% block body %}{% endblock %}
     </body>
